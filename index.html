@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HookMaster — 50 Viral Hooks (Sample)</title>
+<meta name="description" content="ভিডিও ভাইরাল করার ৫০টি প্রমাণিত হুক টেমপ্লেট — এখনি ডাউনলোড করুন।" />
+<style>
+  :root{--accent:#0f62fe;--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2}
+  *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans Bengali',Arial;background:linear-gradient(180deg,#071021 0%,#0b1422 100%);color:#fff;line-height:1.45}
+  .wrap{max-width:900px;margin:32px auto;padding:20px}
+  .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+  h1{margin:0 0 10px;font-size:clamp(20px,4vw,34px)}
+  p.lead{color:var(--muted);margin:0 0 18px}
+  .bullets{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+  .b{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;font-size:14px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+  .btn{padding:14px 18px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),#5aa0ff);color:#001}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff}
+  .note{font-size:13px;color:var(--muted);margin-top:14px}
+  footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+  @media(max-width:640px){.bullets{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <h1>৫০টি প্রমাণিত ভিডিও হুক — এক্সপ্লোসিভ টেমপ্লেট</h1>
+        <p class="lead">প্রথম ৩ সেকেন্ডে দর্শকের মন ধরে রাখুন — কপিরাইটার-পরীক্ষিত হুকগুলো দিয়ে আপনার ভিডিওর রিটেনশন ও ভিউ বাড়ান।</p>
+      </header>
+
+      <section>
+        <div class="bullets">
+          <div class="b">✔ ৮ সেকেন্ডের জন্য কনটেন্ট‑ফোকাসড হুক</div>
+          <div class="b">✔ প্রতিটি হুকের ভয়েস‑ওভার লাইনে নির্দেশনা</div>
+          <div class="b">✔ নীচে সোশ্যাল প্রুফ ও ব্যবহারকারীর রিভিউ</div>
+          <div class="b">✔ ডাউনলোড লিংক ইমেইলে ডেলিভারি</div>
+        </div>
+
+        <div class="cta">
+          <!-- Replace href="#" with your payment / download URL -->
+          <a class="btn btn-primary" href="#" id="buyBtn">এখনই ডাউনলোড করুন — ৳১০০</a>
+          <a class="btn btn-ghost" href="#" id="sampleBtn">Free sample দেখুন</a>
+        </div>
+
+        <p class="note">পেমেন্টের জন্য PayPal/Stripe/Gumroad/SendOwl ইত্যাদি ব্যবহার করুন। Bangladesh‑এ bKash integration লাগলে সেটআপ আলাদা হবে।</p>
+      </section>
+
+      <hr style="opacity:.06;margin:20px 0">
+
+      <section>
+        <h3 style="margin-top:0">কী পাবেন?</h3>
+        <p style="color:var(--muted)">৫০টি হুক + প্রতিটির জন্য অটো-স্ক্রিপ্ট লাইন, ভয়েস‑ওভার টিপস, এবং থামনেইল আইডিয়া।</p>
+        <div style="margin-top:12px;color:var(--muted)"><strong>সোশ্যাল প্রুফ:</strong> "চমৎকার রিসোর্স — এক সপ্তাহেই ভিউ বেড়েছে" — রাহাত</div>
+      </section>
+
+      <footer>© আপনার ব্র্যান্ড • Privacy • Terms</footer>
+    </div>
+  </div>
+
+<script>
+  document.getElementById('buyBtn').addEventListener('click', function(e){
+    // এখানে আপনার পেমেন্ট/গেটওয়ে লিংক বসান
+    // উদাহরণ : window.location.href = "https://www.paypal.com/...";
+    alert('পেমেন্ট লিংক বসান এখানে — আপনি চান আমি পেমেন্ট ইন্টিগ্রেশন করে দিই? (PayPal/SendOwl/Gumroad/bKash)');
+    e.preventDefault();
+  });
+  document.getElementById('sampleBtn').addEventListener('click', function(e){
+    alert('Sample দেখানোর জায়গায় আপনি একটি ছোট PDF বা রিড-অনলাইন পেজ লিংক দেবেন।');
+    e.preventDefault();
+  });
+</script>
+</body>
+</html>
