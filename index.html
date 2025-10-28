@@ -72,5 +72,40 @@
     e.preventDefault();
   });
 </script>
+<!-- put this on https://economist-bd.github.io/hookmaster/pay.html বা আপনার পেজে -->
+<button id="bkashPay">Pay with bKash (৳100)</button>
+
+<script>
+document.getElementById('bkashPay').addEventListener('click', async () => {
+  try {
+    // amount and invoice set here
+    const payload = { amount: "100.00", invoice: "HOOK_" + Date.now() };
+    const res = await fetch("https://your-backend.example.com/create-payment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const j = await res.json();
+    console.log("create payment response:", j);
+
+    // Depending on create response, you may get a checkout URL or a paymentID
+    // If bKash returns a "paymentURL" (URL-based checkout), just redirect:
+    if (j.create && j.create.paymentURL) {
+      window.location = j.create.paymentURL;
+      return;
+    }
+
+    // If you received a paymentID you might need to open bKash JS widget or follow URL-based flow.
+    // For tokenized checkout, often front gets a 'bkash paymentID' then bKash JS SDK/dialog handles it.
+    alert("Payment created. Follow the next step in the mobile app / widget. Check console.");
+  } catch (err) {
+    console.error(err);
+    alert("Payment creation failed: " + err.message);
+  }
+});
+</script>
+
+
+  
 </body>
 </html>
