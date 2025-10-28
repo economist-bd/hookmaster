@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HookMaster — 50 Motivation Hooks (Dark Neon)</title>
+  <meta name="description" content="50 Viral short-video hooks (Bangla) — script, voice tips, thumbnail demo. Dark Neon theme. Single HTML file for GitHub." />
+  <style>
+    /* ====== Dark Neon UI ====== */
+    :root{
+      --bg:#05060a;
+      --card:#071027;
+      --muted:#9fb4d8;
+      --glass:rgba(255,255,255,0.03);
+      --neon1:#00f0ff;
+      --neon2:#a64dff;
+      --neon3:#00ff9f;
+      --accent:linear-gradient(90deg,var(--neon1),var(--neon2));
+      --radius:14px;
+      --glass-2: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, 'Noto Sans Bengali', sans-serif;background:
+      radial-gradient(1200px 400px at 10% 10%, rgba(64,192,255,0.04), transparent 8%),
+      radial-gradient(800px 300px at 90% 90%, rgba(166,77,255,0.03), transparent 10%),
+      var(--bg);color:#e6f0ff;-webkit-font-smoothing:antialiased}
+    header{padding:20px 18px;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;gap:12px}
+    header h1{font-size:18px;margin:0;letter-spacing:0.2px}
+    header p{margin:0;color:var(--muted);font-size:13px}
+    .wrap{max-width:1100px;margin:18px auto;padding:18px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+    .search{flex:1;min-width:180px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:var(--glass);color:inherit}
+    button{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+    button.primary{background:linear-gradient(90deg,var(--neon1),var(--neon2));color:#021; border:0; font-weight:700}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+    .card{background:var(--card);border-radius:var(--radius);padding:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 30px rgba(2,6,23,0.6);position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+    .thumb{height:120px;border-radius:10px;overflow:hidden;margin-bottom:10px;position:relative;border:1px solid rgba(255,255,255,0.02)}
+    .thumb svg{width:100%;height:100%;display:block}
+    .hook{font-weight:800;color:#eaf6ff;margin-bottom:6px;font-size:15px;line-height:1.2}
+    .script{font-size:13px;color:#dbeafe;margin-bottom:6px}
+    .voice{font-size:13px;color:var(--muted);margin-bottom:8px}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{font-size:12px;padding:6px 8px;border-radius:10px;background:rgba(255,255,255,0.02);color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+    .copyOk{color:var(--neon3);font-weight:700}
+    footer{color:var(--muted);padding:18px 6px;text-align:center;font-size:13px}
+    /* responsive tweaks */
+    @media (max-width:520px){
+      .thumb{height:88px}
+      header{flex-direction:column;align-items:flex-start;gap:8px}
+    }
+    /* neon glow title */
+    .logo{
+      padding:8px 12px;border-radius:10px;background:linear-gradient(90deg, rgba(0,240,255,0.06), rgba(166,77,255,0.04));
+      border:1px solid rgba(255,255,255,0.02);
+      box-shadow:0 6px 24px rgba(166,77,255,0.06), 0 0 18px rgba(0,240,255,0.03) inset;
+      font-weight:800;color:#bffcff;font-size:13px;
+    }
+    .downloadAll{margin-left:auto}
+    pre{white-space:pre-wrap;background:rgba(0,0,0,0.12);padding:8px;border-radius:8px;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">HookMaster • Dark Neon</div>
+    <div style="flex:1"></div>
+    <div>
+      <h1 style="margin:0;font-size:16px">50 Motivation Hooks — Bangla</h1>
+      <p style="margin-top:6px;font-size:13px;color:var(--muted)">প্রতি কার্ডে: হুক + ৮–১২ সেকেন্ড স্ক্রিপ্ট + ভয়েস টিপস + থামনেইল ডেমো</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="controls">
+      <input id="q" class="search" placeholder="খুঁজুন (উদাহরণ: 'বিশ্বাস', 'টাকা', 'ক্লান্ত')" />
+      <button id="copyAll" class="primary">Copy All Markdown</button>
+      <button id="downloadMd">Download .md</button>
+      <button id="downloadHtml" class="downloadAll">Download HTML</button>
+    </div>
+
+    <div id="grid" class="grid" aria-live="polite"></div>
+
+    <footer>
+      Tips: প্রতিটি কার্ড থেকে 'Copy' করে সরাসরি রিলে-ভয়েস দিয়ে রেকর্ড করুন। ডাউনলোড করলে Markdown আকারে পাওয়া যাবে পুরো সেট।
+    </footer>
+  </main>
+
+  <script>
+    // ===== Data: 50 hooks (Motivation) =====
+    const data = [
+{ id:1, hook:"তুমি যদি আজ হাল ছেড়ে দাও, কাল তোমার গল্প কেউ শুনবে না!", script:"আজকের কষ্টটা যদি সহ্য করতে পারো, আগামীকাল সেটাই হবে তোমার গর্বের গল্প।", voice:"ধীরে শুরু, শেষে শক্ত উচ্চারণ।", thumbText:"আলো এসে গেছে" },
+{ id:2, hook:"সবার মতো হতে গিয়ে তুমি নিজের মতো থাকা ভুলে যাচ্ছো না তো?", script:"কপি না, নিজের ভার্সন হও — কারণ আসল কখনো ফেইক হারায় না।", voice:"মৃদু কিন্তু আত্মবিশ্বাসী সুরে।", thumbText:"মাস্ক নামাও" },
+{ id:3, hook:"সাফল্যের আগে সবাই তোমাকে নিয়ে হাসবে!", script:"যখন সফল হবে, তখন সবাই বলবে — ও তো আগেই পারবে জানতাম!", voice:"হালকা হাসি দিয়ে শুরু, শেষে দৃঢ় কণ্ঠে বলো।", thumbText:"ভিড়ের ভেতরে এক" },
+{ id:4, hook:"তোমার চুপ থাকা মানে তুমি দুর্বল না!", script:"কখনো কখনো চুপ থাকা সবচেয়ে বড় উত্তর।", voice:"নিচু স্বরে ধীরে উচ্চারণ করো।", thumbText:"শান্ত মুখ" },
+{ id:5, hook:"যারা তোমাকে এখন উপহাস করছে, কাল তারাই অনুকরণ করবে!", script:"সময়টা শুধু বদলাতে দাও — হাসির শব্দ করতালিতে পরিণত হবে।", voice:"কণ্ঠে রহস্য আর আত্মবিশ্বাস রাখো।", thumbText:"ঘড়ি হাতে" },
+{ id:6, hook:"তুমি ক্লান্ত না, তুমি শুধু পরীক্ষার মধ্যে আছো।", script:"কঠিন সময় মানেই শেষ নয়, নতুন শুরু।", voice:"নরম অনুপ্রেরণামূলক টোনে।", thumbText:"ভোরের আলো" },
+{ id:7, hook:"সবাই জানে তুমি পারবে না — কিন্তু তুমি জানো তুমি পারবে!", script:"বিশ্বাস রাখো, কারণ একদিন সেই ‘পারবে না’-রা তোমার নাম গুনবে।", voice:"উৎসাহদায়ক শক্ত টোনে।", thumbText:"মুষ্টি উঁচু" },
+{ id:8, hook:"তুমি ব্যর্থ না — তুমি এখনো শেষ করোনি!", script:"যতক্ষণ চেষ্টা থামে না, ততক্ষণ ব্যর্থতা শব্দটাই মিথ্যা।", voice:"ধীরে শুরু, শেষে এক্সপ্রেশন বাড়াও।", thumbText:"ফিনিক্স উঠছে" },
+{ id:9, hook:"তুমি যেই সময়টা হারাচ্ছো, কেউ সেটা কাজে লাগাচ্ছে!", script:"তুমি স্ক্রল করছো, কেউ স্বপ্ন তৈরি করছে।", voice:"সামান্য তিরস্কারের টোনে।", thumbText:"স্ক্রল বনাম কাজ" },
+{ id:10, hook:"সপ্ন শুধু চোখে রাখলে হবে না, ঘামেও ভেজাতে হবে!", script:"সপ্ন দেখো, কিন্তু পরিশ্রমের ঘ্রাণে ভেজাও সেটাকে।", voice:"অনুপ্রেরণামূলক রিদমে।", thumbText:"চোখে ঘাম" },
+{ id:11, hook:"বেতন বাড়বে না, যদি তুমি নিজেকে বাড়াও না!", script:"তুমি যত বেশি দক্ষ, তত কম নিয়ন্ত্রিত।", voice:"আত্মবিশ্বাসী টোনে, ২ সেক বিরতি পরে মূল লাইন।", thumbText:"বই আর ল্যাপটপ" },
+{ id:12, hook:"৯ টা থেকে ৫ টা পর্যন্ত তুমি শুধু অন্যের স্বপ্নে কাজ করো!", script:"নিজের স্বপ্নে কাজ শুরু করলেই জীবন বদলে যাবে।", voice:"সামান্য মৃদু গম্ভীর কণ্ঠে।", thumbText:"বিদ্যুতের জানালা" },
+{ id:13, hook:"একটা স্কিল তোমার ভাগ্য বদলে দিতে পারে!", script:"শুধু একটাই জিনিস শেখো, যা সবার প্রয়োজন।", voice:"ধীরে ধীরে বাড়াও গতি।", thumbText:"হাতের দক্ষতা" },
+{ id:14, hook:"পয়সা না থাকলেও আইডিয়া থাকলে তুমি এগিয়ে!", script:"সবাই টাকা চায়, কিন্তু বিজয়ীরা আইডিয়া খোঁজে।", voice:"জোরালো ইনট্রো + অনুপ্রেরণামূলক শেষ।", thumbText:"বাল্ব জ্বলে উঠছে" },
+{ id:15, hook:"তুমি কত আয় করো না, বরং কত রাখো সেটাই আসল!", script:"টাকা আয় নয়, ব্যবস্থাপনা জীবন বদলায়।", voice:"মৃদু স্মার্ট ব্যবসায়িক টোনে।", thumbText:"ওয়ালেট ও ক্যালকুলেটর" },
+{ id:16, hook:"প্রেমে না পড়ে থেকো না — কিন্তু নিজের মান হারিও না!", script:"ভালোবাসা পাওয়া রোমান্টিক, কিন্তু নিজের মর্যাদা হারালে সেটা পাওয়া নয়।", voice:"নরম কিন্তু দৃঢ়; শেষ লাইনে একটু কষ্টানুভবীয় টোন।", thumbText:"হারানো ফুল" },
+{ id:17, hook:"মেকে অনুকরণ করো না — নিজের কণ্ঠ নাও!", script:"তুমি যখন নিজস্ব কণ্ঠে বলবে, তখনই মানুষ সত্যিই কান দিবে।", voice:"স্বচ্ছ, আত্মবিশ্বাসী।", thumbText:"মাইকে কণ্ঠ" },
+{ id:18, hook:"শিক্ষা বই দিয়ে নয়, অভিজ্ঞতা দিয়ে কাজে লাগে!", script:"বইগুলো গুরুত্বপূর্ণ, কিন্তু বাস্তব অভিজ্ঞতা তোমাকে এগিয়ে নিয়ে যায়।", voice:"গভীর কিন্তু বন্ধুত্বপূর্ণ টোন।", thumbText:"ওয়ার্কশপ" },
+{ id:19, hook:"ভুল করলে লজ্জা নয় — না চেষ্টা করাই লজ্জার ব্যাপার!", script:"ভুলগুলোই তোমাকে শেখায়, তাই সাহস করে চেষ্টা করো।", voice:"উত্সাহভরিত, সাহসী।", thumbText:"প্রথম ড্রাফট" },
+{ id:20, hook:"একটু সাহস দিলেই মানুষ তোমায় মিস করবে!", script:"কখনো একটু সাহস দেখাও — পরিবর্তন আসবেই।", voice:"উদাস কিন্তু অনুপ্রেরণীয়ভাবে শেষ করা।", thumbText:"সিঁড়িতে দাঁড়া" },
+{ id:21, hook:"পরিবারের সঙ্গে সময় কাটানো হাই-প্রাইরিটি হওয়া উচিত।", script:"যত ব্যস্ত থাকবে তুমি, ততই ছোট মুহূর্তগুলোকে ভালোবাসো।", voice:"নরম, চিন্তাশীল টোন।", thumbText:"পরিবার হাসি" },
+{ id:22, hook:"ছোট সেভিংস — বড় ভবিষ্যত!", script:"প্রতিদিন ১০ টাকা সেভ করলেই বড় লক্ষ্যে পৌঁছাও — শুরু করো আজই।", voice:"স্বচ্ছ ও প্র্যাকটিক্যাল টোন।", thumbText:"কাচে সঞ্চয় পাত্র" },
+{ id:23, hook:"শরীর ঠিক না থাকলে সব ঠিক থাকে না।", script:"স্বাস্থ্যই মূল — প্রতিদিন ১৫ মিনিট হাঁটুন।", voice:"সতর্ক ও দেখাশোনা স্বরের মতো।", thumbText:"সকালের হাঁটা" },
+{ id:24, hook:"নিজের জন্য 'না' বলা জরুরি।", script:"সবকিছুকে হ্যা বললে তুমি হারিয়ে যাবে — বল 'না' যখন দরকার।", voice:"নির্ধারিত, শক্ত কণ্ঠ।", thumbText:"হাত 'না' ইঙ্গিত" },
+{ id:25, hook:"ফলে নয়, প্রক্রিয়ায় মনোযোগ দিন!", script:"ফল কেবল আনুষঙ্গিক — ভালো প্র্যাকটিস করো, ফল আসবেই।", voice:"বস্তুনিষ্ঠ, অনুপ্রেরণামূলক।", thumbText:"কারিগর কাজ করছে" },
+{ id:26, hook:"সোশ্যাল মিডিয়ায় সময় কাটাও — কিন্তু জীবনকে পোস্ট কোরো না।", script:"লাইফ করো, স্টোরি নয় — বাস্তব অভিজ্ঞতা বানাও।", voice:"মৃদু তিরস্কার সহ বন্ধুত্বপূর্ণ।", thumbText:"ফোন বনাম প্রকৃতি" },
+{ id:27, hook:"একটি দয়া ছোট হলেও পৃথিবী বদলায়।", script:"আজ কাউকে হাসাও — তুমি জানো না সেটি কার জীবনে কি মানে।", voice:"নরম, সহানুভূতিশীল।", thumbText:"হাস্যকর শিশুরে" },
+{ id:28, hook:"সুন্দর জীবন তৈরি করতে ছোট শুরু করো।", script:"বড় স্বপ্ন আছে? ছোট পদক্ষেপ আজ থেকে শুরু করো।", voice:"হালকা উত্সাহিত কণ্ঠ।", thumbText:"টুডো লিস্ট" },
+{ id:29, hook:"তুমি কতটা ব্যস্ত না, বরং কতটা ফলপ্রসূ তা দেখো।", script:"টাইম ব্যবস্থাপনা তোমাকে ব্যস্ত থেকে সফল করে।", voice:"স্বল্প এবং কড়া পরামর্শমূলক টোন।", thumbText:"ঘড়ি ও লিস্ট" },
+{ id:30, hook:"বিরতিতে তুমি নিজেকে রিসেট করো।", script:"একদিন ফোকাস ছেড়ে বিশ্রাম নাও — ফিরে এসে তাজা শুরু করবে।", voice:"আনন্দমিশ্রিত শান্ত কণ্ঠ।", thumbText:"কফি ও বই" },
+{ id:31, hook:"তোমার ভুল তোমাকে অপমান করে না — শেখায়।", script:"ভুল হলে লুকানো নেই, তা আগলে নিয়ে বড় হও।", voice:"স্তব্ধ-আশ্বাসজনক টোন।", thumbText:"মিস্টেক পেজ" },
+{ id:32, hook:"প্রতিদিন 1% উন্নতি — বছর শেষে বিস্ময়!", script:"থেকে যাওয়ার বদলে প্রতিদিন একটু একটু বদল।", voice:"উৎসাহজনক, নম্বর হাইলাইট করো।", thumbText:"গ্রাফ ওঠানামা" },
+{ id:33, hook:"ফ্রি কনটেন্ট দিয়ে সেক্সি হয়ে যাও!", script:"মানসম্পন্ন কন্টেন্ট দিলে দর্শক ফিরে আসবে — নিরলসভাবে দাও।", voice:"স্পষ্ট এবং মার্কেটিং কণ্ঠে।", thumbText:"ভিউ কাউন্টার" },
+{ id:34, hook:"রিলেশনশিপের ছোট ছোট ৫ নিয়ম জানো?", script:"শুধু কথা শোনা নয় — বুঝাও, সময়ও দাও।", voice:"বন্ধুত্বপূর্ণ ও প্রেমময় কণ্ঠ।", thumbText:"ক্যাফেতে দুজন" },
+{ id:35, hook:"টেকনিক্যাল স্কিল ছাড়াও সোফট স্কিল জরুরি!", script:"কমিউনিকেশন, টাইম, টিমওয়ার্ক — এগুলোই কাজ করে।", voice:"প্রফেশনাল, কিন্তু সহজভাবে বলো।", thumbText:"টিম হাই-ফাইভ" },
+{ id:36, hook:"ফেইল হলো? তো কি — এটা তোমার র‍্যাম্প আপ!", script:"প্রতিটি ফেইল তোমাকে আরও শক্ত বানায় — লাফাও আবার।", voice:"উত্সাহী আর কামান মতো ফাইনাল।", thumbText:"অ্যাথলেট লাফ" },
+{ id:37, hook:"গল্প বলো, মানুষ শুনবে।", script:"বাকিটা তথ্য দিলে মানুষ মনে রাখে না — গল্প দিলেই মনে থাকবে।", voice:"আকর্ষণীয় রেগুলার টোন, পেইস পরিবর্তন করো।", thumbText:"স্টোরি বুক" },
+{ id:38, hook:"নো-ফিল্টার ডে — আজকে সত্য বলো।", script:"মাস্ক নামাও, কাজের কথা বলো — বিশ্বাস বাড়বে।", voice:"খোলামেলা ও সরল কণ্ঠ।", thumbText:"নো ফিল্টার" },
+{ id:39, hook:"প্রতিদ্বন্দ্বিতাকে ভয় না পেয়ে বন্ধু বানাও।", script:"কম্পিটিশন তোমাকে উন্নত করে — তাকে বন্ধু বানাও।", voice:"ওয়ার্ম, কনসিলিয়েটিং টোন।", thumbText:"হ্যান্ডশেক" },
+{ id:40, hook:"এক মিনিটে কিভাবে আলাদা দেখাবেন?", script:"ক্যামেরার জন্য ৩টি সহজ ট্রিক — তাড়াতাড়ি চেষ্টা করো।", voice:"ফাস্ট পেস, টিপস স্পষ্ট করে।", thumbText:"৩ ট্রিক নম্বর" },
+{ id:41, hook:"ডিজিটাল ফাস্ট — ২৪ ঘন্টা অফ স্ক্রিন challenge!", script:"একদিন স্ক্রিন বন্ধ করে দেখো — কি বদল হয়?", voice:"কৌতূহল জাগানো কণ্ঠ।", thumbText:"ফোন ক্রস" },
+{ id:42, hook:"ঘুমই আপনার সর্বোচ্চ পারফরম্যান্স গোপনীয়তা!", script:"৭–৮ ঘণ্টা ঘুম দাও — মস্তিষ্ক ধুয়ে পরিষ্কার হবে।", voice:"নরম, বিশ্বাসযোগ্য টোন।", thumbText:"শুয়ে আছে" },
+{ id:43, hook:"ফ্রিকশনের মধ্যে সৃজনশীলতা লুকিয়ে আছে।", script:"রুটিন ভাঙো, নতুন কিছু চেষ্টা করো — আইডিয়া আসবেই।", voice:"উৎসাহ ও উৎসুকতা মিশিয়ে বলো।", thumbText:"রঙিন স্প্ল্যাশ" },
+{ id:44, hook:"আজই ১ লক্ষ ভিউ কিভাবে? ছোট ট্রিক।", script:"শিরোনাম + থামনেইল + প্রথম ২ সেকেন্ড — ফোকাস করো।", voice:"নির্দেশমূলক ও স্পষ্ট টোন।", thumbText:"ভিউ বাড়ছে" },
+{ id:45, hook:"প্রকৃত বন্ধুত্বই সময়ে টিকে থাকে।", script:"বন্ধুদের সঙ্গে সময় কাটাও — স্মৃতি বানাও, কনটেন্ট নয়।", voice:"কেউ কথা বলছে এমন কোমল কণ্ঠ।", thumbText:"বন্ধুরা হাসছে" },
+{ id:46, hook:"বড় স্বপ্নের নেপথ্যে ছোট কাজগুলো গোপন হিরো।", script:"বড় কাজগুলো ঠিক ওই ছোট ধাপগুলো থেকে আসে — আজই শুরু করো।", voice:"গভীর, অনুপ্রেরণামূলক।", thumbText:"চেষ্টা চালানো" },
+{ id:47, hook:"মানুষ তোমাকে ভুলে যাবে না যদি তুমি গল্প দাও, সংখ্যা নয়।", script:"লেখবা না, অনুভব করাও — ভিউ বাড়বে।", voice:"আবেগময়, প্যাশনেট কণ্ঠ।", thumbText:"গল্প বলো" },
+{ id:48, hook:"সাধারণ বিষয়ক টিউটোরিয়াল বানাও — সবাই দেখবে।", script:"১ ট্রিক, ১ টা ফল — সহজ, দ্রুত, কার্যকর।", voice:"মৃদু ও স্পষ্ট নির্দেশিকা।", thumbText:"হাত চালানো" },
+{ id:49, hook:"অতি-সোজা প্রশ্ন—কান্না থামায় কেন?", script:"কখনো কখনো কান্না শক্তি — স্তব্ধ হওয়া নয়, মুক্তি।", voice:"সহানুভূতিশীল, শান্ত কণ্ঠ।", thumbText:"কাঁদছে কিন্তু হাসছে" },
+{ id:50, hook:"ভাইরাল হওয়ার সিক্রেট? প্রথম ৩ সেকেন্ডে সব বলো।", script:"ইন্ট্রো দাও, কনটেন্ট দেখাও, কল টু অ্যাকশন রাখো — শেষ।", voice:"তাড়াতাড়ি, স্পষ্ট ও শক্তিশালী।", thumbText:"0:00–0:03 হাইলাইট" }
+    ];
+
+    // ===== render grid =====
+    const grid = document.getElementById('grid');
+    function thumbSVG(text){
+      // simple neon gradient SVG placeholder with hook text (short)
+      return `
+      <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#00f0ff"/>
+            <stop offset="1" stop-color="#a64dff"/>
+          </linearGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="8" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#g1)" opacity="0.06"/>
+        <g filter="url(#glow)">
+          <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle"
+            font-family="Noto Sans Bengali, Inter" font-size="34" fill="white" opacity="0.95">${escapeHtml(text)}</text>
+        </g>
+      </svg>`;
+    }
+    function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function render(items){
+      grid.innerHTML = items.map(it => `
+        <article class="card" data-id="${it.id}">
+          <div class="thumb">${thumbSVG(it.thumbText)}</div>
+          <div class="hook">${it.hook}</div>
+          <div class="script"><strong>স্ক্রিপ্ট:</strong> ${it.script}</div>
+          <div class="voice"><strong>ভয়েস টিপস:</strong> ${it.voice}</div>
+          <div class="actions" style="margin-top:8px">
+            <button class="copy" data-id="${it.id}">Copy Script</button>
+            <button class="copyMd" data-id="${it.id}">Copy MD</button>
+            <span class="badge">#${String(it.id).padStart(2,'0')}</span>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    render(data);
+
+    // ===== search =====
+    document.getElementById('q').addEventListener('input', e=>{
+      const q = e.target.value.trim().toLowerCase();
+      if(!q) return render(data);
+      const filtered = data.filter(d =>
+        (d.hook + ' ' + d.script + ' ' + d.voice + ' ' + d.thumbText).toLowerCase().includes(q)
+      );
+      render(filtered);
+    });
+
+    // ===== clipboard actions =====
+    document.addEventListener('click', async (ev)=>{
+      const t = ev.target;
+      if(t.matches('.copy')){
+        const id = +t.dataset.id;
+        const it = data.find(x=>x.id===id);
+        try{
+          await navigator.clipboard.writeText(it.script);
+          t.textContent = 'Copied!';
+          setTimeout(()=>t.textContent='Copy Script',1200);
+        }catch(e){
+          alert('Clipboard blocked: select and copy manually.');
+        }
+      }
+      if(t.matches('.copyMd')){
+        const id = +t.dataset.id;
+        const it = data.find(x=>x.id===id);
+        const md = `**${it.hook}**\n\n**স্ক্রিপ্ট:** ${it.script}\n\n**ভয়েস টিপস:** ${it.voice}\n\n**থামনেইল ডেমো:** ${it.thumbText}\n\n---\n`;
+        try{
+          await navigator.clipboard.writeText(md);
+          t.textContent='Copied MD!';
+          setTimeout(()=>t.textContent='Copy MD',1200);
+        }catch(e){
+          alert('Clipboard blocked: select and copy manually.');
+        }
+      }
+    });
+
+    // ===== Export all as Markdown =====
+    function buildAllMarkdown(){
+      return data.map(it => `**${it.hook}**\n\n**স্ক্রিপ্ট:** ${it.script}\n\n**ভয়েস টিপস:** ${it.voice}\n\n**থামনেইল ডেমো:** ${it.thumbText}\n\n---\n`).join('\n');
+    }
+    document.getElementById('copyAll').addEventListener('click', async ()=>{
+      const md = buildAllMarkdown();
+      try{
+        await navigator.clipboard.writeText(md);
+        document.getElementById('copyAll').textContent='Copied All!';
+        setTimeout(()=>document.getElementById('copyAll').textContent='Copy All Markdown',1500);
+      }catch(e){
+        alert('Clipboard blocked. Try Download .md button.');
+      }
+    });
+
+    // download .md
+    document.getElementById('downloadMd').addEventListener('click', ()=>{
+      const blob = new Blob([buildAllMarkdown()], {type:'text/markdown;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'hookmaster-motivation.md'; document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },300);
+    });
+
+    // download current HTML (self)
+    document.getElementById('downloadHtml').addEventListener('click', ()=>{
+      const doc = '<!doctype html>\\n' + document.documentElement.outerHTML;
+      const blob = new Blob([doc], {type:'text/html;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'hookmaster.html'; document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },300);
+    });
+
+    // accessibility: allow pressing Enter in search to focus first result
+    document.getElementById('q').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ const first = document.querySelector('.card'); if(first) first.scrollIntoView({behavior:'smooth'}); }
+    });
+
+  </script>
+</body>
+</html>
