@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pay with bKash</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding-top: 50px; }
+    button {
+      background: #e2136e;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover { background: #c0105f; }
+  </style>
+</head>
+<body>
+  <h2>Pay with bKash</h2>
+  <p>Send payment to <b>01912125156</b></p>
+  <button id="payBtn">Pay ৳100</button>
+
+  <script>
+    const BACKEND_URL = "https://your-backend.onrender.com"; // change after deploy
+
+    document.getElementById("payBtn").addEventListener("click", async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/create-payment`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: "100.00",
+            invoice: "HOOK_" + Date.now()
+          })
+        });
+        const data = await response.json();
+        console.log(data);
+        if (data.bkashURL) {
+          window.location.href = data.bkashURL;
+        } else if (data.paymentID && data.redirectURL) {
+          window.location.href = data.redirectURL;
+        } else {
+          alert("Payment started. Check console for details.");
+        }
+      } catch (e) {
+        alert("Error: " + e.message);
+      }
+    });
+  </script>
+</body>
+</html>
